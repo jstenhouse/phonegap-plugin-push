@@ -654,7 +654,10 @@
 - (void)handleNotificationSettingsWithAuthorizationOptions:(NSNumber *)authorizationOptionsObject
 {
     UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
-    UNAuthorizationOptions authorizationOptions = [authorizationOptionsObject unsignedIntegerValue];
+    // UNAuthorizationOptions authorizationOptions = [authorizationOptionsObject unsignedIntegerValue];
+
+    // try forcing alert, sound and badge support here
+    UNAuthorizationOptions authorizationOptions = UNAuthorizationOptionAlert | UNAuthorizationOptionSound | UNAuthorizationOptionBadge;
 
     __weak UNUserNotificationCenter *weakCenter = center;
     [center getNotificationSettingsWithCompletionHandler:^(UNNotificationSettings * _Nonnull settings) {
